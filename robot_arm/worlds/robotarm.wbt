@@ -1,0 +1,133 @@
+#VRML_SIM R2019b utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.11368201676160103 -0.9876053398664328 -0.10822241788244552 1.5888063172645221
+  position -3.651755783770167 0.9351671086385892 -0.11526735557434307
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+}
+Robot {
+  children [
+    DEF hinge1 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0 0.08 0
+      }
+      device [
+        DEF motor1 RotationalMotor {
+          name "motor1"
+        }
+        DEF pos1 PositionSensor {
+          name "pos1"
+        }
+      ]
+      endPoint DEF arm1 Solid {
+        translation 0 0.27 0
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0 0.21 0
+            }
+            device [
+              DEF motor2 RotationalMotor {
+                name "motor2"
+              }
+              DEF pos2 PositionSensor {
+                name "pos2"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0.41 0
+              rotation 1 0 0 0
+              children [
+                DEF arm2 Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 0.333333 0
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.02 0.4 0.02
+                  }
+                }
+              ]
+              boundingObject USE arm2
+              physics Physics {
+              }
+            }
+          }
+          Transform {
+            translation 0 0.2 0
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  roughness 1
+                  metalness 0
+                }
+                geometry Sphere {
+                  radius 0.05
+                }
+              }
+            ]
+          }
+          DEF arm1 Shape {
+            appearance PBRAppearance {
+              baseColor 1 0.333333 0
+              metalness 0
+            }
+            geometry Box {
+              size 0.02 0.4 0.02
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE arm1
+        physics Physics {
+        }
+      }
+    }
+    Transform {
+      translation 0 0.06 0
+      children [
+        DEF hingebase Shape {
+          appearance PBRAppearance {
+            roughness 1
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.05
+          }
+        }
+      ]
+    }
+    DEF base Solid {
+      children [
+        DEF base Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.333333 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.1 0.4
+          }
+        }
+      ]
+      boundingObject USE base
+      physics Physics {
+      }
+    }
+  ]
+  boundingObject USE base
+  physics Physics {
+  }
+  controller "robotarmcontroller"
+}
+PointLight {
+  attenuation 0 0 1
+  location -0.5 0.9 0
+}
