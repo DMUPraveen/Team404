@@ -1,0 +1,186 @@
+#VRML_SIM R2019b utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.9998318068755067 0.01789678019183781 0.004007894562588299 5.191141060186009
+  position 0.4918817874199141 3.595163598409142 1.89682523099331
+}
+TexturedBackground {
+}
+RectangleArena {
+  translation 0.001241 0 -0.183617
+  floorTileSize 1 1
+  floorAppearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "C:/Users/USER/AppData/Local/Programs/Webots/projects/robots/gctronic/e-puck/worlds/textures/floor.png"
+      ]
+    }
+  }
+}
+Robot {
+  translation 0.20593799999999998 0.03 0.003909
+  rotation 0 -1 0 1.446987
+  children [
+    DistanceSensor {
+      translation -0.02 0 0.11
+      rotation 0 0 1 -1.5707996938995747
+      name "sensor1"
+      rotationStep 0.261799
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0.02 0 0.11
+      rotation 0 0 1 -1.5707996938995747
+      name "sensor2"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0 0 0.11
+      rotation 0 0 1 -1.5707996938995747
+      name "sensor3"
+      type "infra-red"
+    }
+    DEF wheel1 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.06 0 0.05
+      }
+      device [
+        DEF wheel1 RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.06 1.3198722809494515e-05 0.049971517525033836
+        rotation -0.05668595823729211 0.05668614910613312 0.9967815119865724 1.5740233667850743
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.008
+              radius 0.03
+            }
+          }
+        ]
+        boundingObject USE wheel
+        physics Physics {
+        }
+        rotationStep 0.261799
+      }
+    }
+    DEF wheel2 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.06 0 0.05
+      }
+      device [
+        DEF wheel2 RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06 0 0.05
+        rotation -1.4239046986508293e-07 1.4239094930950724e-07 0.9999999999999796 1.570799693899595
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.008
+              radius 0.03
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    DEF wheel3 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.06 0 -0.05
+      }
+      device [
+        DEF wheel3 RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation 0.06 0 -0.05
+        rotation -1.4239046986508293e-07 1.4239094930950724e-07 0.9999999999999796 1.570799693899595
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.008
+              radius 0.03
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    DEF wheel4 HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.06 0 -0.05
+      }
+      device [
+        DEF wheel4 RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint DEF wheel4 Solid {
+        translation -0.06 0 -0.05
+        rotation -1.4239046986508293e-07 1.4239094930950724e-07 0.9999999999999796 1.570799693899595
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.008
+              radius 0.03
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    DEF body Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.04 0.2
+      }
+    }
+  ]
+  boundingObject USE body
+  physics Physics {
+    mass 8
+  }
+  controller "my_controller"
+}
+TexturedBackgroundLight {
+}
