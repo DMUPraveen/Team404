@@ -1,0 +1,1 @@
+Press 'W' to go up and  and 'S' to go down otherwise it will stay put floating

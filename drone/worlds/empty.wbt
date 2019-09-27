@@ -1,0 +1,109 @@
+#VRML_SIM R2019b utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.9378833873713478 -0.34505353778757963 -0.03623268901312468 0.33517010309563694
+  position -0.037456321099592335 0.5993354265309501 1.790258572257886
+  follow "robot"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+Robot {
+  translation -0.05937 0.03 -0.05473
+  rotation 0 1 0 -2.6179943071795866
+  children [
+    Transform {
+      translation 0 0.075 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.01
+          }
+        }
+      ]
+    }
+    Accelerometer {
+    }
+    Propeller {
+      shaftAxis 0 1 0
+      thrustConstants 0.01 0
+      torqueConstants 0.01 0
+      device RotationalMotor {
+        name "motor"
+        maxVelocity 100
+      }
+      fastHelix Solid {
+        children [
+          Transform {
+            translation 0 0.1 0
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  transparency 0.5
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.003
+                  radius 0.05
+                }
+              }
+            ]
+          }
+        ]
+      }
+      slowHelix Solid {
+        children [
+          Transform {
+            translation 0 0.1 0
+            rotation 0 0 1 1.5707996938995747
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 1 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.001 0.2 0.02
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+    DEF drone Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "C:/Users/USER/Desktop/New folder/drone/textures/Untitled.png"
+          ]
+          repeatS FALSE
+          repeatT FALSE
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  boundingObject USE drone
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "my_controller"
+}
