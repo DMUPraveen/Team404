@@ -1,7 +1,7 @@
-from controller import Robot, Motor
+from controller import Robot, Motor,PositionSensor
 from math import pi, radians,atan,cos,sin,acos,asin
 
-
+robot = Robot()
 ServoNames = ["servo1","servo2","servo3","servo4"]
 HOME = [0,-45,45,90]
 POSITION1 = [90,45,0,0]
@@ -10,7 +10,7 @@ HorizontalAngle = 0
 cordinate = [0,0]
 Arm1_length =0.14
 Arm2_length = 0.18
-
+sensor = PositionSensor("sensor")
 
 
 def convertToRadians(position):
@@ -30,7 +30,7 @@ def movePosition(position):
     for i in range(0,4):
         Servos[i].setPosition(position[i])
 
-
+    print(sensor.getPosition())
 
     
 def setPlateAngle(position,theta):
@@ -98,7 +98,7 @@ print(POSITION3)
 #print(cordinate)
 POSITION1 = setPlateAngle(POSITION1,HorizontalAngle)
 POSITION2 = setPlateAngle(POSITION2,HorizontalAngle)
-robot = Robot()
+
 Servos = prepareServos()
 status = True
 tick = 0

@@ -1,6 +1,5 @@
 #VRML_SIM R2019b utf8
 WorldInfo {
-  basicTimeStep 64
 }
 Viewpoint {
   orientation -0.035606668675880686 -0.9990002315722394 0.027031508733665603 4.783216649608869
@@ -17,8 +16,6 @@ RectangleArena {
 Robot {
   translation 0 0.025 0
   children [
-    Display {
-    }
     DEF joint1 HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
@@ -26,6 +23,7 @@ Robot {
       device [
         DEF servo1 RotationalMotor {
           name "servo1"
+          controlPID 1 0 0
           maxVelocity 100
         }
       ]
@@ -40,6 +38,7 @@ Robot {
             device [
               DEF servo2 RotationalMotor {
                 name "servo2"
+                controlPID 1 0 0
                 maxVelocity 100
               }
             ]
@@ -55,6 +54,7 @@ Robot {
                   device [
                     DEF servo3 RotationalMotor {
                       name "servo3"
+                      controlPID 1 0 0
                       maxVelocity 100
                     }
                   ]
@@ -71,8 +71,12 @@ Robot {
                               anchor 0.015 0 0
                             }
                             device [
+                              DEF sensor PositionSensor {
+                                name "sensor"
+                              }
                               DEF servo4 RotationalMotor {
                                 name "servo4"
+                                controlPID 1 0 0
                                 maxVelocity 100
                               }
                             ]
