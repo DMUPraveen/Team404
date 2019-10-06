@@ -1,0 +1,170 @@
+#VRML_SIM R2019b utf8
+WorldInfo {
+  basicTimeStep 64
+}
+Viewpoint {
+  orientation -0.035606668675880686 -0.9990002315722394 0.027031508733665603 4.783216649608869
+  position 1.6965614645476499 0.15884256538709943 0.01515740269265295
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.013037 0 -0.6675869999999999
+  floorSize 10 10
+}
+Robot {
+  translation 0 0.025 0
+  children [
+    Display {
+    }
+    DEF joint1 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+      }
+      device [
+        DEF servo1 RotationalMotor {
+          name "servo1"
+          maxVelocity 100
+        }
+      ]
+      endPoint Solid {
+        translation -0.02 0.045 0
+        children [
+          DEF joint2 HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 0 -1
+              anchor 0.02 0 0
+            }
+            device [
+              DEF servo2 RotationalMotor {
+                name "servo2"
+                maxVelocity 100
+              }
+            ]
+            endPoint Solid {
+              translation 0.02 0.07 0
+              rotation 0 0 -1 0
+              children [
+                DEF joint3 HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 0 -1
+                    anchor 0 0.075 0
+                  }
+                  device [
+                    DEF servo3 RotationalMotor {
+                      name "servo3"
+                      maxVelocity 100
+                    }
+                  ]
+                  endPoint Solid {
+                    translation -0.015 0.08 0
+                    rotation 0 0 -1 0
+                    children [
+                      DEF box Transform {
+                        translation 0.19 0 0
+                        children [
+                          DEF joint4 HingeJoint {
+                            jointParameters HingeJointParameters {
+                              axis 0 0 -1
+                              anchor 0.015 0 0
+                            }
+                            device [
+                              DEF servo4 RotationalMotor {
+                                name "servo4"
+                                maxVelocity 100
+                              }
+                            ]
+                            endPoint DEF endplate Solid {
+                              translation 0.0294 0 0
+                              rotation 0 0 -1 0
+                              children [
+                                Shape {
+                                  appearance PBRAppearance {
+                                    baseColor 1 0 0
+                                    roughness 1
+                                    metalness 0
+                                  }
+                                  geometry Box {
+                                    size 0.05 0.01 0.08
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                          Shape {
+                            appearance PBRAppearance {
+                            }
+                            geometry Box {
+                              size 0.05 0.02 0.03
+                            }
+                          }
+                        ]
+                      }
+                      DEF rod Transform {
+                        translation 0.095 0 0
+                        rotation 0 0 1 1.5707996938995747
+                        children [
+                          Shape {
+                            appearance PBRAppearance {
+                              roughness 1
+                              metalness 0
+                            }
+                            geometry Cylinder {
+                              height 0.19
+                              radius 0.005
+                            }
+                          }
+                        ]
+                      }
+                      Shape {
+                        appearance PBRAppearance {
+                        }
+                        geometry Box {
+                          size 0.07 0.03 0.04
+                        }
+                      }
+                    ]
+                  }
+                }
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 0 0
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.02 0.15 0.06
+                  }
+                }
+              ]
+            }
+          }
+          DEF servo1_box Shape {
+            appearance PBRAppearance {
+            }
+            geometry Box {
+              size 0.08 0.03 0.05
+            }
+          }
+        ]
+      }
+    }
+    DEF base Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry Cylinder {
+        height 0.05
+        radius 0.05
+      }
+    }
+  ]
+  boundingObject USE base
+  physics Physics {
+    density -1
+    mass 5
+  }
+  controller "task1_revpy"
+}
